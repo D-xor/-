@@ -77,7 +77,7 @@ def format_track(x, track):
     return _track
 
 
-def get_InfoTp(sessionId, dInfo, responsId, _data):
+def check_InfoTp(sessionId, dInfo, responsId, _data):
     data = {
         "language": "zh-CN",
     }
@@ -111,11 +111,13 @@ if __name__ == "__main__":
         track = format_track(x, track_str)
         _data = crypto.call("AESEncrypt", track, sessionId)
         # _data = cryped_track(track, sessionId)
-        msg = get_InfoTp(sessionId=sessionId, dInfo=dinfo, _data=_data, responsId=rid)
+        msg = check_InfoTp(sessionId=sessionId, dInfo=dinfo, _data=_data, responsId=rid)
 
         if "成功" in msg:
             success_count += 1
 
-        logger.info(f"{i+1}/{total} - x:{x} - {msg}")
+            logger.info(f"{i+1}/{total} - x:{x} - {msg}")
+        # else:
+        #     print(track_str)
 
     print(f"成功率:{((success_count)/total) * 100}%")
