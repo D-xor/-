@@ -78,14 +78,13 @@ def format_track(x, track):
 
 
 def check_InfoTp(sessionId, dInfo, responsId, _data):
-    data = {
-        "language": "zh-CN",
-    }
+    data = {}
     data["sessionId"] = sessionId
     data["responseId"] = responsId
     data["dInfo"] = dInfo
+    data["language"] = "zh-CN"
     data["data"] = _data
-    resp = requests.post(responseId_api, headers=headers, data=data)
+    resp = requests.post(checkinfotp_api, headers=headers, data=data)
     try:
         resp_json = resp.json()
         message = resp_json["message"]
@@ -97,7 +96,7 @@ def check_InfoTp(sessionId, dInfo, responsId, _data):
 if __name__ == "__main__":
     mylogger = MyLogger()
     logger = mylogger.logger
-    total = 3
+    total = 100
     success_count = 0
     crypto = get_encryptor()
     for i in range(total):
@@ -111,13 +110,13 @@ if __name__ == "__main__":
         track = format_track(x, track_str)
         _data = crypto.call("AESEncrypt", track, sessionId)
         # _data = cryped_track(track, sessionId)
-        msg = check_InfoTp(sessionId=sessionId, dInfo=dinfo, _data=_data, responsId=rid)
+        msg = check_InfoTp(sessionId=sessionId, dInfo=dinfo,responsId=rid, _data=_data)
 
         if "成功" in msg:
             success_count += 1
 
             logger.info(f"{i+1}/{total} - x:{x} - {msg}")
-        # else:
-        #     print(track_str)
+        else:
+            print(track_str)
 
     print(f"成功率:{((success_count)/total) * 100}%")

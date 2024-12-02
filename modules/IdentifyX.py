@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import math 
 
 def showimg(img):
     cv2.imshow('Marked Image', img)
@@ -51,6 +52,13 @@ def match_edge(bg_edge, slider_edge):
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)  # 寻找最优匹配
     return max_loc
 
+def traditional_round(number, ndigits=0):
+    '''返回数字的四舍五入值'''
+    factor = 10 ** ndigits
+    round_num = math.floor(number * factor + 0.5) / factor if number > 0 else math.ceil(number * factor - 0.5) / factor
+    return int(round_num)
+
+
 def get_x():
     bg_img, slider_img = get_img("./imgs/_big.jpg"), get_img("./imgs/_puzzle.jpg")
     # 获取上高下高
@@ -76,13 +84,14 @@ def get_x():
     cv2.rectangle(bg_img, tl, br, (0, 0, 255), 2)  # 绘制矩形
     cv2.imwrite('./imgs/mark.jpg', bg_img)  # 保存在本地
     # 返回缺口的X坐标
-    x = int(matched_result[0] * 0.58)
+    x = traditional_round(matched_result[0] * 0.5833)  # 480x270 -> 280x158
     # x = max_loc[0]
     return x
 
 
 if __name__ == '__main__':
     x = get_x()
+    print(x)
 
 
 

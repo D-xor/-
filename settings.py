@@ -2,6 +2,7 @@
 sessionId_api = "https://api.anjuke.com/web/general/captchaNew.html"
 responseId_api = "https://verifycode.58.com/captcha/getInfoTp"
 img_api = 'https://verifycode.58.com/captcha/captcha_img'
+checkinfotp_api = 'https://verifycode.58.com/captcha/checkInfoTp'
 
 UserAgent = {
     "UserAgent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
@@ -16,21 +17,21 @@ taN = {
 
 
 headers = {
-    "accept": "application/json, text/javascript, */*; q=0.01",
-    "accept-language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
-    "cache-control": "no-cache",
-    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-    "origin": "https://api.anjuke.com",
-    "pragma": "no-cache",
-    "priority": "u=1, i",
-    "referer": "https://api.anjuke.com/",
-    "sec-ch-ua": '"Not/A)Brand";v="8", "Chromium";v="126", "Microsoft Edge";v="126"',
-    "sec-ch-ua-mobile": "?0",
-    "sec-ch-ua-platform": '"Windows"',
-    "sec-fetch-dest": "empty",
-    "sec-fetch-mode": "cors",
-    "sec-fetch-site": "cross-site",
-    "user-agent": UserAgent['UserAgent']
+    'accept': 'application/json, text/javascript, */*; q=0.01',
+    'accept-language': 'zh-CN,zh;q=0.9',
+    'cache-control': 'no-cache',
+    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'origin': 'https://api.anjuke.com',
+    'pragma': 'no-cache',
+    'priority': 'u=1, i',
+    'referer': 'https://api.anjuke.com/',
+    'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'cross-site',
+    'user-agent': UserAgent['UserAgent'],
 }
 
 params = {
