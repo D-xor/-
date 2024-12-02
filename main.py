@@ -9,6 +9,8 @@ from settings import *
 from PyLogger import MyLogger
 
 
+mylogger = MyLogger()
+logger = mylogger.logger
 
 # 获取sessionId
 def get_sessionId():
@@ -92,11 +94,8 @@ def check_InfoTp(sessionId, dInfo, responsId, _data):
     except:
         logger.warning(f"InfoTp响应异常")
 
-
-if __name__ == "__main__":
-    mylogger = MyLogger()
-    logger = mylogger.logger
-    total = 100
+def run_test(time=100):
+    total = time
     success_count = 0
     crypto = get_encryptor()
     for i in range(total):
@@ -109,14 +108,16 @@ if __name__ == "__main__":
         track_str = get_track(x)
         track = format_track(x, track_str)
         _data = crypto.call("AESEncrypt", track, sessionId)
-        # _data = cryped_track(track, sessionId)
         msg = check_InfoTp(sessionId=sessionId, dInfo=dinfo,responsId=rid, _data=_data)
 
         if "成功" in msg:
             success_count += 1
 
-            logger.info(f"{i+1}/{total} - x:{x} - {msg}")
-        else:
-            print(track_str)
+        logger.info(f"{i+1}/{total} - x:{x} - {msg}")
 
     print(f"成功率:{((success_count)/total) * 100}%")
+    
+
+if __name__ == "__main__":
+    run_test(time=100)
+

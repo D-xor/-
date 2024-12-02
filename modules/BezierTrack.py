@@ -23,8 +23,9 @@ class BezierCurve:
         # plt.scatter([P0[0], P1[0], P2[0], P3[0]], [P0[1], P1[1], P2[1], P3[1]], color="red", label="控制点")
         # plt.plot([P0[0], P1[0], P2[0], P3[0]], [P0[1], P1[1], P2[1], P3[1]], '--', color="gray", label="控制点连线")
         # curve = self.bezier_curve(P0, P1, P2, P3, n_points=200)
-
-        curve_points = self.bezier_curve(P0, P1, P2, P3, 20)
+        
+        n_points = int(10 + (x / 100) * 100)
+        curve_points = self.bezier_curve(P0, P1, P2, P3, n_points)
         return curve_points
     
     def format_track(self, points):
